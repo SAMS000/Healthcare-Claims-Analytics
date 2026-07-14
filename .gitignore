@@ -1,6 +1,7 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
 # Virtual Environment
 .venv/
@@ -11,9 +12,23 @@ __pycache__/
 # Environment Variables
 .env
 
-# Data Outputs
-data/raw/*
+# Jupyter
+.ipynb_checkpoints/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Keep folder structure but ignore dataset contents
+data/raw/**
 !data/raw/.gitkeep
 
-data/processed/*
+data/processed/**
 !data/processed/.gitkeep
+
+# Ignore generated reports (optional for now)
+reports/*.xlsx
+reports/*.csv
