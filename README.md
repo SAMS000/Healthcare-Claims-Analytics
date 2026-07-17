@@ -1,11 +1,34 @@
-## Project Status
+# Healthcare Claims Analytics
 
-- [x] Repository initialized
-- [x] Project structure created
-- [x] CMS dataset acquired
-- [x] Dataset profiling
-- [ ] Database schema
-- [ ] PostgreSQL ETL
-- [ ] SQL analytics
-- [ ] Excel reporting
-- [ ] Business Analysis documentation
+End-to-end healthcare claims analytics pipeline using PostgreSQL, SQLAlchemy, and Python ETL on the CMS Medicare Physician & Other Practitioners dataset.
+
+## Technologies
+
+- Python
+- PostgreSQL
+- SQLAlchemy
+- Pandas
+- psycopg2
+- python-dotenv
+- SQL
+- pgAdmin
+- Git
+
+## Dataset
+
+- CMS Medicare Physician & Other Practitioners Provider and Service Data
+- ~9.8 Million Records
+- Official CMS Open Data
+
+## Features
+
+- Normalized PostgreSQL database schema
+- ETL pipeline (Extract → Transform → Load)
+- SQL analytics queries
+- Healthcare provider utilization analysis
+- Payment and reimbursement analysis
+- Business-ready reporting
+
+## Status
+
+🚧 In Development
