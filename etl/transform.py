@@ -52,3 +52,92 @@ def transform_providers(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     return providers
+
+def transform_hcpcs(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Transform HCPCS information into a normalized table.
+    """
+
+    hcpcs = (
+        df[
+            [
+                "HCPCS_Cd",
+                "HCPCS_Desc",
+                "HCPCS_Drug_Ind",
+            ]
+        ]
+        .drop_duplicates()
+        .copy()
+    )
+
+    hcpcs.columns = [
+        "hcpcs_code",
+        "description",
+        "drug_indicator",
+    ]
+
+    hcpcs["drug_indicator"] = (
+        hcpcs["drug_indicator"]
+        .map({"Y": True, "N": False})
+    )
+
+    return hcpcs
+
+def transform_place_of_service(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Transform Place of Service information into a normalized table.
+    """
+
+    place = (
+        df[
+            [
+                "Place_Of_Srvc",
+            ]
+        ]
+        .drop_duplicates()
+        .copy()
+    )
+
+    place.columns = [
+        "place_of_service_code",
+    ]
+
+    return place
+
+def transform_provider_service_statistics(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Transform provider service statistics into the fact table.
+    """
+
+    statistics = (
+        df[
+            [
+                "Rndrng_NPI",
+                "HCPCS_Cd",
+                "Place_Of_Srvc",
+                "Tot_Benes",
+                "Tot_Srvcs",
+                "Tot_Bene_Day_Srvcs",
+                "Avg_Sbmtd_Chrg",
+                "Avg_Mdcr_Alowd_Amt",
+                "Avg_Mdcr_Pymt_Amt",
+                "Avg_Mdcr_Stdzd_Amt",
+            ]
+        ]
+        .copy()
+    )
+
+    statistics.columns = [
+        "provider_npi",
+        "hcpcs_code",
+        "place_of_service_code",
+        "total_beneficiaries",
+        "total_services",
+        "total_bene_day_services",
+        "avg_submitted_charge",
+        "avg_allowed_amount",
+        "avg_payment_amount",
+        "avg_standardized_amount",
+    ]
+
+    return statistics
