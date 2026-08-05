@@ -62,7 +62,9 @@ CREATE TABLE place_of_service (
 -- =====================================================
 
 CREATE TABLE provider_service_statistics (
-    
+
+    id BIGSERIAL PRIMARY KEY,
+
     provider_npi BIGINT NOT NULL,
 
     hcpcs_code VARCHAR(10) NOT NULL,
@@ -93,13 +95,14 @@ CREATE TABLE provider_service_statistics (
 
     CONSTRAINT fk_place
         FOREIGN KEY (place_of_service_code)
-        REFERENCES place_of_service(place_of_service_code)
-    
-    PRIMARY KEY (
-    provider_npi,
-    hcpcs_code,
-    place_of_service_code
-    )
+        REFERENCES place_of_service(place_of_service_code),
+
+    CONSTRAINT uq_provider_service
+        UNIQUE (
+            provider_npi,
+            hcpcs_code,
+            place_of_service_code
+        )
 );
 
 -- =====================================================
