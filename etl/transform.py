@@ -155,4 +155,7 @@ def transform_provider_service_statistics(df: pd.DataFrame) -> pd.DataFrame:
         "avg_standardized_amount",
     ]
 
+    # Replace pandas NaN with Python None
+    statistics = statistics.where(statistics.notna(), None)
+
     return statistics
