@@ -51,8 +51,16 @@ def transform_providers(df: pd.DataFrame) -> pd.DataFrame:
         .map({"Y": True, "N": False})
     )
 
-    return providers
+    providers["zip_code"] = (
+        providers["zip_code"]
+        .astype(str)
+        .str.zfill(5)
+    )
 
+    # convert pandas NaN -> Python None
+    providers = providers.astype(object).where(pd.notnull(providers), None)
+
+    return providers
 def transform_hcpcs(df: pd.DataFrame) -> pd.DataFrame:
     """
     Transform HCPCS information into a normalized table.

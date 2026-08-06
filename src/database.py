@@ -25,3 +25,6 @@ SessionLocal = sessionmaker(
     autoflush=False,
     bind=engine,
 )
+
+def get_session():
+    return SessionLocal()
