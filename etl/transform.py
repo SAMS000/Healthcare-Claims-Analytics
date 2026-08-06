@@ -110,6 +110,13 @@ def transform_place_of_service(df: pd.DataFrame) -> pd.DataFrame:
         "place_of_service_code",
     ]
 
+    place["description"] = place["place_of_service_code"].map(
+        {
+            "F": "Facility",
+            "O": "Office",
+        }
+    )
+
     return place
 
 def transform_provider_service_statistics(df: pd.DataFrame) -> pd.DataFrame:
